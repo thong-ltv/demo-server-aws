@@ -7,6 +7,16 @@ app.get("/demo", (req, res) => {
 
 const PORT = 3000;
 
-app.listen(process.env.PORT || PORT, () => {
-  console.log("Server is running...");
-});
+mongoose
+  .connect(
+    "mongodb+srv://thonglaptrinhvien:tJEye3yw6ATaCE*@cluster0.zhntbql.mongodb.net/blogs?retryWrites=true&w=majority&appName=Cluster0"
+  )
+  .then(() => {
+    console.log("Connected to database!");
+    app.listen(process.env.PORT || PORT, () => {
+      console.log("Server runing on port 3000");
+    });
+  })
+  .catch(() => {
+    console.log("connection failed!");
+  });
